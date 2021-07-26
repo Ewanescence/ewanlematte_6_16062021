@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 const authRoutes = require('./routes/auth-routes')
 const sauceRoutes = require('./routes/sauce-routes')
 
+mongoose.set('useCreateIndex', true);
 mongoose.connect('mongodb+srv://p2ko_admin:admin123@sopekocko.mspck.mongodb.net/sopekocko?retryWrites=true&w=majority',
   { useNewUrlParser: true,
     useUnifiedTopology: true })
@@ -23,14 +24,10 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json());
 
-app.post('/api/auth/signup', authRoutes);
-app.post('/api/auth/login', authRoutes);
-
-app.use('/api/sauces', sauceRoutes);
-app.use('/api/sauces/:id', sauceRoutes);
-app.post('/api/sauces', sauceRoutes);
-app.put('/api/sauces/:id', sauceRoutes);
-app.delete('/api/sauces/:id', sauceRoutes);
-app.post('/api/sauces/:id/like', sauceRoutes);
+app.use('/api/auth/', authRoutes);
+app.use('/api/sauces/', sauceRoutes);
+app.post('/api/sauces/', sauceRoutes);
+app.put('/api/sauces/', sauceRoutes);
+app.delete('/api/sauces/', sauceRoutes);
 
 module.exports = app;

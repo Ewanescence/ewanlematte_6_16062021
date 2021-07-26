@@ -1,4 +1,4 @@
-const User = require('../models/sauce-model')
+const Sauce = require('../models/sauce-model')
 
 exports.getAllSauces = (req, res, next) => {
     res.status(200);
