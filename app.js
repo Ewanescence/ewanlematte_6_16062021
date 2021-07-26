@@ -1,10 +1,14 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 
 const app = express();
-const bodyParser = require('body-parser');
+
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb+srv://oc_tester:gjt1wcqwFLRSRS68@clusteroc.hzjor.mongodb.net/clusterOC?retryWrites=true&w=majority',
+const authRoutes = require('./routes/auth-routes')
+const sauceRoutes = require('./routes/sauce-routes')
+
+mongoose.connect('mongodb+srv://p2ko_admin:admin123@sopekocko.mspck.mongodb.net/sopekocko?retryWrites=true&w=majority',
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
@@ -19,36 +23,14 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json());
 
-app.post('/api/auth/signup', (req, res, next) => {
-    res.status(200);
-});
+app.post('/api/auth/signup', authRoutes);
+app.post('/api/auth/login', authRoutes);
 
-app.post('/api/auth/login', (req, res, next) => {
-    res.status(200);
-});
-
-app.use('/api/sauces', (req, res, next) => {
-    res.status(200);
-});
-
-app.use('/api/sauces/:id', (req, res, next) => {
-    res.status(200);
-});
-
-app.post('/api/sauces', (req, res, next) => {
-    res.status(200);
-});
-
-app.put('/api/sauces/:id', (req, res, next) => {
-    res.status(200);
-});
-
-app.delete('/api/sauces/:id', (req, res, next) => {
-    res.status(200);
-});
-
-app.post('/api/sauces/:id/like', (req, res, next) => {
-    res.status(200);
-});
+app.use('/api/sauces', sauceRoutes);
+app.use('/api/sauces/:id', sauceRoutes);
+app.post('/api/sauces', sauceRoutes);
+app.put('/api/sauces/:id', sauceRoutes);
+app.delete('/api/sauces/:id', sauceRoutes);
+app.post('/api/sauces/:id/like', sauceRoutes);
 
 module.exports = app;
