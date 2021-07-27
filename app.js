@@ -11,7 +11,7 @@ const sauceRoutes = require('./routes/sauce-routes')
 const path = require('path');
 
 mongoose.set('useCreateIndex', true);
-mongoose.connect('mongodb+srv://p2ko_admin:admin123@sopekocko.mspck.mongodb.net/sopekocko?retryWrites=true&w=majority',
+mongoose.connect('mongodb+srv://p2ko_editor:editor123@sopekocko.mspck.mongodb.net/sopekocko?retryWrites=true&w=majority',
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))

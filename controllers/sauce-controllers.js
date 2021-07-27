@@ -79,12 +79,12 @@ exports.likeOneSauce = (req, res, next) => {
       switch(req.body.like) {
         case 1 : 
           if (sauce.usersLiked.includes(req.body.userId)) {
-            console.log('a déjà liké');
+            res.status(400).json({ error });
           } 
           else {
-            console.log('n\'a pas liké');
             sauce.likes++;
             sauce.usersLiked.push(req.body.userId);
+            res.status(201).json({ message: 'Like ajouté'}) 
           }
           break
         case 0 :
@@ -92,26 +92,27 @@ exports.likeOneSauce = (req, res, next) => {
             sauce.likes--;
             const index = sauce.usersLiked.indexOf(req.body.userId);
             sauce.usersLiked.splice(index, 1);
+            res.status(201).json({ message: 'Like retiré'})
           }
           else if (sauce.usersDisliked.includes(req.body.userId)) {
             sauce.dislikes--;
             const index = sauce.usersDisliked.indexOf(req.body.userId);
             sauce.usersDisliked.splice(index, 1);
+            res.status(201).json({ message: 'Dislike retiré'})
           }
           break
         case -1 :
           if (sauce.usersDisliked.includes(req.body.userId)) {
-            console.log('a déjà disliké');
+            res.status(400).json({ error });
           } 
           else {
-            console.log('n\'a pas disliké');
             sauce.dislikes++;
             sauce.usersDisliked.push(req.body.userId);
+            res.status(201).json({ message: 'Dislike ajouté'})
           }
           break
       }
       sauce.save();
-      res.status(200).json({ message: 'Like ajouté'}) 
     })
     .catch(error => res.status(500).json({ error }));
   } catch (error) {
