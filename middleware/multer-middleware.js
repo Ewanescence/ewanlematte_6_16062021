@@ -1,10 +1,16 @@
-const multer = require('multer');
+// Imports
 
-const MIME_TYPES = {
+const multer = require('multer'); // Multer : Gestion des fichiers entrants
+
+// Déclaration des extensions de fichiers autorisées
+
+const MIME_TYPES = { 
     'image/jpg': 'jpg',
     'image/jpeg': 'jpg',
     'image/ppg': 'ppg'
 };
+
+// Configuration de Multer 
 
 const storage = multer.diskStorage({
     destination: (req, file, callback) => {

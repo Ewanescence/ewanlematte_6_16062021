@@ -1,9 +1,12 @@
-const express = require('express');
-const router = express.Router();
+// Imports
+const express = require('express'); // express : framework
+const router = express.Router(); // déclaration du routeur
 
-const userControl = require('../controllers/auth-controllers')
+const userControl = require('../controllers/auth-controllers') // importation du contrôleur d'authentification
 
-router.post('/signup', userControl.signUp);
-router.post('/login', userControl.login);
+// Routes 
+router.post('/signup', userControl.signUp); // route POST vers la logique d'inscription
+router.post('/login', userControl.login); // route POST vers la logique de connexion
 
-module.exports = router;
+// Export
+module.exports = router; // exportation du router vers l'application
