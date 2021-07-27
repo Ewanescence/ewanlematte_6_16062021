@@ -6,7 +6,7 @@ Ce répertoire présente la partie backend du projet 6 du parcours développeur 
 
 • Serveur : NodeJS
 • Framework : Express
-• Base de données : MongoDB
+• Base de données : MongoDB Atlas
 
 ## Frontend ##
 
