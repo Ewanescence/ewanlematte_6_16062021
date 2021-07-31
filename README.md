@@ -37,5 +37,6 @@ Le répertoire est disponible ici :
 
 1. Cloner le dépôt : `git clone https://github.com/Ewanescence/ewanlematte_6_16062021`
 2. Exécuter : `npm install`
-3. Exécuter : `npm start`
-4. Se rendre sur : [Localhost](http://localhost:3000/)
+3. Configurer le fichier .env
+4. Exécuter : `npm start`
+5. Se rendre sur : [Localhost](http://localhost:3000/)
