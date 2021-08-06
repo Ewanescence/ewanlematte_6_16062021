@@ -8,17 +8,22 @@ const User = require('../models/auth-model') // Schéma de données utilisateur
 // Contrôleur d'authentification
 
 exports.signUp = (req, res, next) => { // Logique d'inscription
-    bcrypt.hash(req.body.password, 10) // On sale le mot de passe récupéré dans le corps de la requête 10 fois
-        .then(hash => {
-            const user = new User({ // Déclaration d'un nouvel objet utilisateur
-                email: req.body.email, // Email récupéré dans la requête
-                password: hash // Mot de passe récupéré puis hashé 
-            });
-            user.save() // Sauvegarde de l'objet
-                .then(() => res.status(201).json({ message: 'Utilisateur enregistré !' })) // Réponse positive à la sauvegarde
-                .catch(error => res.status(400).json({ error })); // Réponse négative à la sauvegarde
+    bcrypt.hash(req.body.email, 10)
+        .then(hemail => {
+            bcrypt.hash(req.body.password, 10) // On sale le mot de passe récupéré dans le corps de la requête 10 fois
+                .then(hash => {
+                    const user = new User({ // Déclaration d'un nouvel objet utilisateur
+                        email: hemail, // Email récupéré dans la requête
+                        password: hash // Mot de passe récupéré puis hashé 
+                    });
+                    user.save() // Sauvegarde de l'objet
+                        .then(() => res.status(201).json({ message: 'Utilisateur enregistré !' })) // Réponse positive à la sauvegarde
+                        .catch(error => res.status(400).json({ error })); // Réponse négative à la sauvegarde
+                })
+                .catch(error => res.status(500).json({ error })); // Réponse négative au hashage du mot de passe 
         })
-        .catch(error => res.status(500).json({ error })); // Réponse négative au hashage du mot de passe
+        .catch(error => res.status(500).json({ error }));
+
 };
 
 exports.login = (req, res, next) => { // Logique de connexion

@@ -7,7 +7,7 @@ const multer = require('multer'); // Multer : Gestion des fichiers entrants
 const MIME_TYPES = { 
     'image/jpg': 'jpg',
     'image/jpeg': 'jpg',
-    'image/ppg': 'ppg'
+    'image/png': 'png'
 };
 
 // Configuration de Multer 
